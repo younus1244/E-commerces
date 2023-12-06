@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <style>
+        /* Add your CSS styles here */
+        /* Customize according to your needs */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Admin Panel</h1>
+    </header>
+
+    <main>
+        <form id="addSongForm">
+            <label for="title">Song Title:</label>
+            <input type="text" id="title" required>
+
+            <label for="artist">Artist:</label>
+            <input type="text" id="artist" required>
+
+            <label for="url">Song URL:</label>
+            <input type="url" id="url" required>
+
+            <button type="button" onclick="addSong()">Add Song</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Admin Panel</p>
+    </footer>
+
+    <script>
+        // Frontend JavaScript logic
+
+        function addSong() {
+            const title = document.getElementById("title").value;
+            const artist = document.getElementById("artist").value;
+            const url = document.getElementById("url").value;
+
+            if (title && artist && url) {
+                // Send the song data to the server (simulated in this example)
+                alert(`Added Song:\nTitle: ${title}\nArtist: ${artist}\nURL: ${url}`);
+            } else {
+                alert("Please fill in all fields");
+            }
+        }
+    </script>
+
+</body>
+</html>
