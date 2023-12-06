@@ -1,3 +1,4 @@
+<!-- admin.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
     <style>
-        /* Add your CSS styles here */
-        /* Customize according to your needs */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -101,7 +100,17 @@
             const url = document.getElementById("url").value;
 
             if (title && artist && url) {
-                // Send the song data to the server (simulated in this example)
+                // Add the new song to the global songs array
+                songs.push({ title, artist, url });
+                
+                // Update the songs display on the main page
+                window.opener.displaySongs();
+                
+                // Clear the form fields
+                document.getElementById("title").value = "";
+                document.getElementById("artist").value = "";
+                document.getElementById("url").value = "";
+                
                 alert(`Added Song:\nTitle: ${title}\nArtist: ${artist}\nURL: ${url}`);
             } else {
                 alert("Please fill in all fields");
@@ -110,4 +119,5 @@
     </script>
 
 </body>
-</html>
+    </html>
+    
