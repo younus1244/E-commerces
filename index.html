@@ -56,6 +56,37 @@
             border: 1px solid #ddd;
         }
     </style>
+    <script>
+        function openAddProductModal() {
+            var modal = document.getElementById('addProductModal');
+            modal.style.display = 'block';
+        }
+
+        function closeAddProductModal() {
+            var modal = document.getElementById('addProductModal');
+            modal.style.display = 'none';
+        }
+
+        function addProduct() {
+            // Implement logic to add a new product (dummy example)
+            var productName = document.getElementById('productName').value;
+            var productPrice = document.getElementById('productPrice').value;
+
+            // For simplicity, let's just append the product details to the section
+            var productSection = document.getElementById('featuredProducts');
+            var newProduct = document.createElement('div');
+            newProduct.className = 'product';
+            newProduct.textContent = `Name: ${productName}\nPrice: ${productPrice}`;
+            productSection.appendChild(newProduct);
+
+            // Clear the input fields
+            document.getElementById('productName').value = '';
+            document.getElementById('productPrice').value = '';
+
+            // Close the modal
+            closeAddProductModal();
+        }
+    </script>
 </head>
 <body>
 
@@ -70,11 +101,9 @@
         <a href="#">Admin Panel</a>
     </nav>
 
-    <section>
+    <section id="featuredProducts">
         <h2>Featured Products</h2>
-        <div class="product">Product 1</div>
-        <div class="product">Product 2</div>
-        <div class="product">Product 3</div>
+        <!-- Existing product divs will be added dynamically here -->
     </section>
 
     <section class="admin-panel">
@@ -100,33 +129,6 @@
         <p>&copy; 2023 E-commerce with Admin Panel</p>
     </footer>
 
-    <script>
-        function openAddProductModal() {
-            var modal = document.getElementById('addProductModal');
-            modal.style.display = 'block';
-        }
-
-        function closeAddProductModal() {
-            var modal = document.getElementById('addProductModal');
-            modal.style.display = 'none';
-        }
-
-        function addProduct() {
-            // Implement logic to add a new product (dummy example)
-            var productName = document.getElementById('productName').value;
-            var productPrice = document.getElementById('productPrice').value;
-
-            // For simplicity, let's just show an alert with the entered data
-            alert(`Product added:\nName: ${productName}\nPrice: ${productPrice}`);
-
-            // Clear the input fields
-            document.getElementById('productName').value = '';
-            document.getElementById('productPrice').value = '';
-
-            // Close the modal
-            closeAddProductModal();
-        }
-    </script>
-
 </body>
-</html>
+            </html>
+                
