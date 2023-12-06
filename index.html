@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-commerce with Admin Panel</title>
+    <title>E-commerce</title>
     <style>
+        /* Add your CSS styles here */
+        /* This is a basic example, customize it according to your needs */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f4f4f4;
         }
 
         header {
@@ -34,13 +37,6 @@
             padding: 20px;
         }
 
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            text-align: center;
-        }
-
         .product {
             border: 1px solid #ddd;
             padding: 10px;
@@ -48,87 +44,123 @@
             text-align: center;
             max-width: 200px;
             display: inline-block;
+            background-color: white;
         }
 
-        .admin-panel {
-            margin: 20px;
-            padding: 20px;
+        .cart {
             border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+            max-width: 300px;
+            display: inline-block;
+            background-color: white;
+        }
+
+        .checkout-btn {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .checkout-btn:hover {
+            background-color: #555;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
         }
     </style>
-    <script>
-        function openAddProductModal() {
-            var modal = document.getElementById('addProductModal');
-            modal.style.display = 'block';
-        }
-
-        function closeAddProductModal() {
-            var modal = document.getElementById('addProductModal');
-            modal.style.display = 'none';
-        }
-
-        function addProduct() {
-            // Implement logic to add a new product (dummy example)
-            var productName = document.getElementById('productName').value;
-            var productPrice = document.getElementById('productPrice').value;
-
-            // For simplicity, let's just append the product details to the section
-            var productSection = document.getElementById('featuredProducts');
-            var newProduct = document.createElement('div');
-            newProduct.className = 'product';
-            newProduct.textContent = `Name: ${productName}\nPrice: ${productPrice}`;
-            productSection.appendChild(newProduct);
-
-            // Clear the input fields
-            document.getElementById('productName').value = '';
-            document.getElementById('productPrice').value = '';
-
-            // Close the modal
-            closeAddProductModal();
-        }
-    </script>
 </head>
 <body>
 
     <header>
-        <h1>E-commerce with Admin Panel</h1>
+        <h1>E-commerce</h1>
     </header>
 
     <nav>
         <a href="#">Home</a>
         <a href="#">Products</a>
         <a href="#">Contact</a>
-        <a href="#">Admin Panel</a>
+        <a href="#">Cart</a>
     </nav>
 
-    <section id="featuredProducts">
+    <section>
         <h2>Featured Products</h2>
-        <!-- Existing product divs will be added dynamically here -->
-    </section>
-
-    <section class="admin-panel">
-        <h2>Admin Panel</h2>
-        <button onclick="openAddProductModal()">Add Product</button>
-        <!-- Add more admin functionalities as needed -->
-
-        <!-- Modal for adding a new product -->
-        <div id="addProductModal" style="display: none;">
-            <h3>Add New Product</h3>
-            <label for="productName">Product Name:</label>
-            <input type="text" id="productName">
-            <br>
-            <label for="productPrice">Product Price:</label>
-            <input type="text" id="productPrice">
-            <br>
-            <button onclick="addProduct()">Add Product</button>
-            <button onclick="closeAddProductModal()">Close</button>
+        <div id="products-container">
+            <!-- Products will be dynamically added here -->
         </div>
     </section>
 
+    <section>
+        <h2>Your Cart</h2>
+        <div id="cart-container">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <button class="checkout-btn" onclick="checkout()">Checkout</button>
+    </section>
+
     <footer>
-        <p>&copy; 2023 E-commerce with Admin Panel</p>
+        <p>&copy; 2023 E-commerce</p>
     </footer>
 
+    <script>
+        // Frontend JavaScript logic
+
+        const products = [
+            { id: 1, name: "Product 1", price: 50 },
+            { id: 2, name: "Product 2", price: 75 },
+            { id: 3, name: "Product 3", price: 100 },
+        ];
+
+        let cart = [];
+
+        function displayProducts() {
+            const productsContainer = document.getElementById("products-container");
+            productsContainer.innerHTML = "";
+            products.forEach(product => {
+                const productDiv = document.createElement("div");
+                productDiv.className = "product";
+                productDiv.innerHTML = `<p>${product.name}</p><p>$${product.price}</p>
+                                        <button onclick="addToCart(${product.id})">Add to Cart</button>`;
+                productsContainer.appendChild(productDiv);
+            });
+        }
+
+        function displayCart() {
+            const cartContainer = document.getElementById("cart-container");
+            cartContainer.innerHTML = "";
+            cart.forEach(item => {
+                const cartItemDiv = document.createElement("div");
+                cartItemDiv.className = "cart";
+                cartItemDiv.innerHTML = `<p>${item.name}</p><p>$${item.price}</p>`;
+                cartContainer.appendChild(cartItemDiv);
+            });
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                cart.push({ ...product });
+                displayCart();
+            }
+        }
+
+        function checkout() {
+            alert("Checkout functionality not implemented in this example.");
+            // You can implement the checkout logic here, such as sending the cart data to the server.
+        }
+
+        // Initial display
+        displayProducts();
+        displayCart();
+    </script>
+
 </body>
-            </html>
-                
+</html>
