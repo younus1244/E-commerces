@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-commerce</title>
+    <title>Song Download</title>
     <style>
-        /* Add your CSS styles here */
-        /* This is a basic example, customize it according to your needs */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
@@ -21,53 +19,24 @@
             text-align: center;
         }
 
-        nav {
-            background-color: #eee;
-            padding: 10px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #333;
-            margin: 0 10px;
-            font-weight: bold;
-        }
-
-        section {
+        main {
             padding: 20px;
         }
 
-        .product {
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin: 10px;
-            text-align: center;
-            max-width: 200px;
-            display: inline-block;
-            background-color: white;
+        section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
         }
 
-        .cart {
+        .song {
             border: 1px solid #ddd;
-            padding: 10px;
-            margin: 10px;
-            text-align: center;
-            max-width: 300px;
-            display: inline-block;
-            background-color: white;
-        }
-
-        .checkout-btn {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            border: none;
             border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .checkout-btn:hover {
-            background-color: #555;
+            margin: 10px;
+            padding: 10px;
+            max-width: 200px;
+            text-align: center;
+            background-color: white;
         }
 
         footer {
@@ -81,85 +50,55 @@
 <body>
 
     <header>
-        <h1>E-commerce</h1>
+        <h1>Song Download</h1>
     </header>
 
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Products</a>
-        <a href="#">Contact</a>
-        <a href="#">Cart</a>
-    </nav>
-
-    <section>
-        <h2>Featured Products</h2>
-        <div id="products-container">
-            <!-- Products will be dynamically added here -->
-        </div>
-    </section>
-
-    <section>
-        <h2>Your Cart</h2>
-        <div id="cart-container">
-            <!-- Cart items will be dynamically added here -->
-        </div>
-        <button class="checkout-btn" onclick="checkout()">Checkout</button>
-    </section>
+    <main>
+        <section id="songs-container">
+            <!-- Songs will be dynamically added here -->
+        </section>
+    </main>
 
     <footer>
-        <p>&copy; 2023 E-commerce</p>
+        <p>&copy; 2023 Song Download</p>
     </footer>
 
     <script>
         // Frontend JavaScript logic
 
-        const products = [
-            { id: 1, name: "Product 1", price: 50 },
-            { id: 2, name: "Product 2", price: 75 },
-            { id: 3, name: "Product 3", price: 100 },
+        const songs = [
+            { id: 1, title: "Song 1", artist: "Artist 1", url: "https://music.youtube.com/watch?v=xsZPbX_vUJE&si=8qejlpj6XciTj3wR" },
+            { id: 2, title: "Song 2", artist: "Artist 2", url: "https://example.com/song2.mp3" },
+            { id: 3, title: "Song 3", artist: "Artist 3", url: "https://example.com/song3.mp3" },
         ];
 
-        let cart = [];
-
-        function displayProducts() {
-            const productsContainer = document.getElementById("products-container");
-            productsContainer.innerHTML = "";
-            products.forEach(product => {
-                const productDiv = document.createElement("div");
-                productDiv.className = "product";
-                productDiv.innerHTML = `<p>${product.name}</p><p>$${product.price}</p>
-                                        <button onclick="addToCart(${product.id})">Add to Cart</button>`;
-                productsContainer.appendChild(productDiv);
+        function displaySongs() {
+            const songsContainer = document.getElementById("songs-container");
+            songsContainer.innerHTML = "";
+            songs.forEach(song => {
+                const songDiv = document.createElement("div");
+                songDiv.className = "song";
+                songDiv.innerHTML = `<h3>${song.title}</h3>
+                                     <p>${song.artist}</p>
+                                     <audio controls>
+                                         <source src="${song.url}" type="audio/mp3">
+                                         Your browser does not support the audio element.
+                                     </audio>
+                                     <button onclick="downloadSong(${song.id})">Download</button>`;
+                songsContainer.appendChild(songDiv);
             });
         }
 
-        function displayCart() {
-            const cartContainer = document.getElementById("cart-container");
-            cartContainer.innerHTML = "";
-            cart.forEach(item => {
-                const cartItemDiv = document.createElement("div");
-                cartItemDiv.className = "cart";
-                cartItemDiv.innerHTML = `<p>${item.name}</p><p>$${item.price}</p>`;
-                cartContainer.appendChild(cartItemDiv);
-            });
-        }
-
-        function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
-            if (product) {
-                cart.push({ ...product });
-                displayCart();
+        function downloadSong(songId) {
+            const song = songs.find(s => s.id === songId);
+            if (song) {
+                // Simulate the download process (open in a new tab/window)
+                window.open(song.url, '_blank');
             }
         }
 
-        function checkout() {
-            alert("Checkout functionality not implemented in this example.");
-            // You can implement the checkout logic here, such as sending the cart data to the server.
-        }
-
         // Initial display
-        displayProducts();
-        displayCart();
+        displaySongs();
     </script>
 
 </body>
