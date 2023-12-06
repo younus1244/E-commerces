@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,11 +67,8 @@
     <script>
         // Frontend JavaScript logic
 
-        const songs = [
-            { id: 1, title: "Song 1", artist: "Artist 1", url: "https://music.youtube.com/download?v=xsZPbX_vUJE&si=8qejlpj6XciTj3wR" },
-            { id: 2, title: "Song 2", artist: "Artist 2", url: "https://example.com/song2.mp3" },
-            { id: 3, title: "Song 3", artist: "Artist 3", url: "https://example.com/song3.mp3" },
-        ];
+        // Global variable to store songs
+        const songs = [];
 
         function displaySongs() {
             const songsContainer = document.getElementById("songs-container");
@@ -84,17 +82,14 @@
                                          <source src="${song.url}" type="audio/mp3">
                                          Your browser does not support the audio element.
                                      </audio>
-                                     <button onclick="downloadSong(${song.id})">Download</button>`;
+                                     <button onclick="downloadSong('${song.url}')">Download</button>`;
                 songsContainer.appendChild(songDiv);
             });
         }
 
-        function downloadSong(songId) {
-            const song = songs.find(s => s.id === songId);
-            if (song) {
-                // Simulate the download process (open in a new tab/window)
-                window.open(song.url, '_blank');
-            }
+        function downloadSong(url) {
+            // Simulate the download process (open in a new tab/window)
+            window.open(url, '_blank');
         }
 
         // Initial display
@@ -102,7 +97,4 @@
     </script>
 
 </body>
-    <!-- Add this link where you see fit in your main HTML file -->
-<a href="admin.html" target="_blank">Admin Panel</a>
-    
 </html>
